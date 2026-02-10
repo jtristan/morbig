@@ -1,0 +1,60 @@
+opam-version: "2.0"
+name: "morbig"
+version: "0.11.0"
+synopsis: "A trustworthy parser for POSIX shell"
+description: """\
+Morbig is a parser for shell scripts written in the POSIX shell script
+language. It parses the scripts statically, that is without executing
+them, and constructs a concrete syntax tree for each of them. The
+concrete syntax trees are built using constructors according to the
+shell grammar of the POSIX standard."""
+maintainer: "Nicolas “Niols” Jeannerod <niols@niols.fr>"
+authors: [
+  "Yann Régis-Gianas <yann.regis-gianas@irif.fr>"
+  "Ralf Treinen <ralf.treinen@irif.fr>"
+  "Nicolas Jeannerod <niols@niols.fr>"
+]
+license: "GPL3-only"
+homepage: "https://github.com/colis-anr/morbig"
+bug-reports: "https://github.com/colis-anr/morbig/issues"
+depends: [
+  "base-bigarray" {= "base"}
+  "base-threads" {= "base"}
+  "base-unix" {= "base"}
+  "cppo" {= "1.8.0"}
+  "dune" {= "3.21.0"}
+  "menhir" {= "20210419"}
+  "menhirLib" {= "20210419"}
+  "menhirSdk" {= "20210419"}
+  "ocaml" {= "4.14.2"}
+  "ocaml-base-compiler" {= "4.14.2"}
+  "ocaml-compiler-libs" {= "v0.12.4"}
+  "ocaml-config" {= "2"}
+  "ocaml-options-vanilla" {= "1"}
+  "ocamlfind" {= "1.9.8"}
+  "ppx_derivers" {= "1.2.1"}
+  "ppx_deriving" {= "6.0.3"}
+  "ppx_deriving_yojson" {= "3.9.1"}
+  "ppxlib" {= "0.35.0"}
+  "result" {= "1.5"}
+  "seq" {= "base"}
+  "sexplib0" {= "v0.16.0"}
+  "stdlib-shims" {= "0.3.0"}
+  "visitors" {= "20250212"}
+  "yojson" {= "2.2.2"}
+]
+build: [
+  ["dune" "subst"] {pinned}
+  [
+    "dune"
+    "build"
+    "-p"
+    name
+    "-j"
+    jobs
+    "@install"
+    "@runtest" {with-test}
+    "@doc" {with-doc}
+  ]
+]
+dev-repo: "git+https://github.com/colis-anr/morbig.git"

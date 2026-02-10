@@ -60,3 +60,6 @@ publish-docker-image: docker-image
 
 headers:
 	headache -h .header $(shell find src/ tests/ -regex '.*\.ml[ily]?')
+
+install-deps:
+	opam install . --locked --deps-only -y
